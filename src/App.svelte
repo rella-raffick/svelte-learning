@@ -3,8 +3,17 @@ const name = 'Svelte'
 const tag = `<h1>Svelte Kit</h1>`
 const id = 'svelte-kit'
 const disabled = false
-const games = ['god of war', 'spiderman', 'last of us']
-const num = 10;
+let games = ['god of war', 'spiderman', 'last of us']
+let songs_artist = [
+    {song: 'Stairway to Heaven', artist: 'Led Zeppelin'},
+    {song: 'Bohemian Rhapsody', artist: 'Queen'},
+    {song: 'Yesterday', artist: 'The Beatles'}
+]
+const num = 10
+let newGame = ''
+function addNew(){
+    games = [...games, newGame]
+}
 </script>
 
 <main>
@@ -17,9 +26,16 @@ const num = 10;
     <p>Odd</p>
     {/if}
 
-    {#each games as game}
-    <p>{game}</p>
+    {#each games as game, i}
+    <p>{i + 1 }. {game}</p>
     {/each}
+
+    {#each songs_artist as {song, artist}}
+    <p>{song} by {artist}</p>
+    {/each}
+
+    <input bind:value={newGame} type="text" />
+    <button on:click={addNew}>Submit</button>
 
 
 </main>
